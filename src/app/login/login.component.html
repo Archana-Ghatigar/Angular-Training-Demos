@@ -1,0 +1,10 @@
+<h3>Login</h3>
+<form>
+<div><label> Username:</label> 
+    <input type="text" name="username" #uname="ngModel" [(ngModel)]="username" required minlength="4"/>
+    <span *ngIf="uname.errors?.required&&uname.touched">Username is required</span>
+    <span *ngIf="uname.errors?.minlength&&uname.touched">Username has to be of min 4 chars</span>
+</div>
+<div><label>Enter Password:</label> <input type="password" name="password" #pwd="ngModel" [(ngModel)]="password" /></div>
+<div><label></label><button type="submit" (click)="login()">Login</button></div>
+</form>

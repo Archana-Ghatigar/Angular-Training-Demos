@@ -1,0 +1,11 @@
+<h2>List of All Products</h2>
+<div>Enter Search key: <input type="text" [(ngModel)]="searchkey"/></div>
+Search key: {{searchkey}}
+  <table>
+    <tr *ngFor="let product of productList;">      
+      <td>{{product.name}}</td>
+      <td>{{product.price | currency}}</td>
+      <td><img [src]="product.imgPath"/></td>
+      <td><button *ngIf="isLoggedIn" (click)="addToCart(product)">AddToCart</button></td>    </tr>
+  </table> 
+  

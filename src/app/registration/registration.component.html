@@ -1,0 +1,76 @@
+<div>
+  <div>
+       
+    <form [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
+        <fieldset>
+          <legend>SignUp</legend>
+         
+            <!--- Email Block -->
+            <div class="form-group">
+              <label for="inputEmail">Email</label>
+              <input type="text"
+                id="inputEmail"
+                placeholder="Email" formControlName="email">
+                <div *ngIf="email.invalid && email.touched">
+ 
+        <div class="alert alert-danger" *ngIf="email.errors?.required">
+            Email field can't be blank
+        </div>
+        
+        <div class="alert alert-danger" *ngIf = "email.errors?.email">
+            The email is not in valid format
+        </div>
+      </div>
+            
+      <div class="form-group">
+        <label for="code" >Password</label>
+        <input type="password"
+          id="password"
+          placeholder="password" formControlName="password">
+          <div *ngIf="password.errors?.required && password.touched">
+            Password is mandatory
+          </div>
+          <div *ngIf="password.errors?.minlength && password.touched">
+            Password has to be of min 6 characters
+          </div>
+       </div>  
+            </div>
+            <div class="form-group">
+              <label for="code" >Code</label>
+              <input type="text"
+                id="code"
+                placeholder="code" formControlName="code">
+                <div *ngIf="code.errors?.invalidCode && code.touched">
+                  Code is invalid
+                </div>
+             </div>  
+          <div class="form-group">
+            <label for="country" >Country</label>
+            <input type="text"
+              id="country"
+              placeholder="country" formControlName="country">
+          <ul>
+            <li *ngFor="let key of keywords">{{key}}</li>
+          </ul>
+            </div>
+
+             
+            <!--- Terms and conditions Block --->
+             <div class="form-group">
+              <label>Terms and Conditions</label>
+                <input type="checkbox" formControlName="terms"> Confirm that you've read the Terms and 
+                Conditions              
+            </div>
+            
+           <!--- Buttons Block --->
+            <div class="form-group">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+    <p>Form value {{ signupForm.value | json }} </p>
+     <p> Form status {{ signupForm.status | json}} </p>
+     <p>Code status{{code.errors |json}}</p>
+     </div>
+</div>
